@@ -58,8 +58,8 @@
 
                             <div class="col-md-12">
                                 <label class="cn-label" for="service">الخدمة المطلوبة</label>
-                                <select class="form-select cn-input" id="service" name="service">
-                                    <option value="" selected>اختر الخدمة</option>
+                                <select class="form-select form-control cn-input" id="service" name="service">
+                                    <option class="form-select form-control" value="" selected>اختر الخدمة</option>
                                     <option>الإعلانات المدفوعة</option>
                                     <option>استراتيجية التسويق</option>
                                     <option>تصميم UI/UX والهوية</option>

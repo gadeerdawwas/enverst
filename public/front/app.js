@@ -20,21 +20,31 @@
     const next = () => setActive(i + 1);
     const prev = () => setActive(i - 1);
 
-    btnNext ? .addEventListener("click", () => { next();
-        restart(); });
-    btnPrev ? .addEventListener("click", () => { prev();
-        restart(); });
+    btnNext ? .addEventListener("click", () => {
+        next();
+        restart();
+    });
+    btnPrev ? .addEventListener("click", () => {
+        prev();
+        restart();
+    });
 
     dots.forEach((d, idx) => {
-        d.addEventListener("click", () => { setActive(idx);
-            restart(); });
+        d.addEventListener("click", () => {
+            setActive(idx);
+            restart();
+        });
     });
 
     const start = () => { timer = setInterval(next, 4500); };
-    const stop = () => { if (timer) clearInterval(timer);
-        timer = null; };
-    const restart = () => { stop();
-        start(); };
+    const stop = () => {
+        if (timer) clearInterval(timer);
+        timer = null;
+    };
+    const restart = () => {
+        stop();
+        start();
+    };
 
     root.addEventListener("mouseenter", stop);
     root.addEventListener("mouseleave", start);

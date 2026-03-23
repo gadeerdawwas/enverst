@@ -36,34 +36,16 @@ class FrontController extends Controller
     }
 public function sendEmail(Request $request)
     {
-        // Validate input
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'phone' => 'required|string|max:20',
-            'email' => 'required|email|max:255',
-            'service' => 'nullable|string|max:255',
-            'message' => 'required|string',
-        ]);
-  $name = $request->name;
-        $phone = $request->phone;
-        $email = $request->email;
-        $service = $request->service ?? '-';
-        $message = $request->message;
+      $data = $request->validate([
+        'name' => 'required',
+        'phone' => 'required',
+        'email' => 'required|email',
+        'service' => 'nullable',
+        'message' => 'required',
+    ]);
 
-        // صياغة الرسالة للواتسآب
-        $text = "مرحبا، اسمي: $name\nرقم الهاتف: $phone\nالبريد الإلكتروني: $email\nالخدمة المطلوبة: $service\nالرسالة: $message";
-
-        // ترميز النص لتوافق URL
-        $text = urlencode($text);
-
-        // رقم واتسآب المستلم بصيغة دولية بدون +
-        $whatsappNumber = "972592700999"; // ضع رقمك هنا
-
-        // إعادة توجيه المستخدم إلى واتسآب
-        return redirect("https://wa.me/{$whatsappNumber}?text={$text}");
-        // Send email
-        // Mail::to('youremail@example.com')->send(new ContactMail($request->all()));
-
-        return back()->with('success', 'تم إرسال رسالتك بنجاح!');
+    Mail::to('up120161676@gmail.com')->send(new ContactMail($data));
+    // return dd( 'تم إرسال الرسالة بنجاح ✅');
+    return back()->with('success', 'تم إرسال الرسالة بنجاح ✅');
     }
 }

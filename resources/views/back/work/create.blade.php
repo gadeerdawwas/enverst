@@ -34,7 +34,7 @@
                                 <div class="col-md-6">
 
                                     <div class="form-group">
-                                        <label>عنوان العمل</label> 
+                                        <label>عنوان العمل</label>
                                         <input type="text" name="title" class="form-control" required
                                             placeholder="أدخل عنوان العمل">
                                     </div>
@@ -49,11 +49,13 @@
                                         <label>القسم</label>
 
                                         <select name="category" class="form-control">
+  @foreach ($services as $slug => $service)
+                                            <option value="{{ Str::replaceFirst('خدمة ', '', $service['title']) }}"> {{ Str::replaceFirst('خدمة ', '', $service['title']) }}</option>
 
-                                            <option value="تصميم مواقع">تصميم مواقع</option>
-                                            <option value="تطوير مواقع">تطوير مواقع</option>
-                                            <option value="تطبيقات موبايل">تطبيقات موبايل</option>
-                                            <option value="هوية بصرية">هوية بصرية</option>
+
+
+                  @endforeach
+
 
                                         </select>
 

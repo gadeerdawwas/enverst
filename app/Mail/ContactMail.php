@@ -5,6 +5,7 @@ namespace App\Mail;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
+use Illuminate\Mail\Mailables\Address;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
@@ -24,7 +25,7 @@ class ContactMail extends Mailable
 
     public function build()
     {
-        return $this->subject('رسالة جديدة من موقعك')
+        return $this->subject('رسالة جديدة من Enverst')
                     ->markdown('emails.contact')
                     ->with('data', $this->data);
     }
@@ -32,12 +33,16 @@ class ContactMail extends Mailable
     /**
      * Get the message envelope.
      */
-    public function envelope(): Envelope
-    {
-        return new Envelope(
-            subject: 'Contact Mail',
-        );
-    }
+public function envelope(): Envelope
+{
+    return new Envelope(
+        subject: 'رسالة جديدة من Enverst',
+        from: new Address(
+            'up120161676@gmail.com',
+            'Enverst'
+        ),
+    );
+}
 
     /**
      * Get the message content definition.

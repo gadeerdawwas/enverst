@@ -48,18 +48,15 @@
 
                                         <select name="category" class="form-control">
 
-                                            <option value="تصميم مواقع" {{ $work->category == 'تصميم مواقع' ? 'selected' : '' }}>
-                                                تصميم مواقع</option>
+                                          @foreach ($services as $slug => $service)
+    <option
+        value="{{ Str::replaceFirst('خدمة ', '', $service['title']) }}"
+        {{ $work->category == Str::replaceFirst('خدمة ', '', $service['title']) ? 'selected' : '' }}
+    >
+        {{ Str::replaceFirst('خدمة ', '', $service['title']) }}
+    </option>
+@endforeach
 
-                                            <option value="تطوير مواقع" {{ $work->category == 'تطوير مواقع' ? 'selected' : '' }}>
-                                                تطوير مواقع</option>
-
-                                            <option value="تطبيقات موبايل"
-                                                {{ $work->category == 'تطبيقات موبايل' ? 'selected' : '' }}>تطبيقات موبايل
-                                            </option>
-
-                                            <option value="هوية بصرية" {{ $work->category == 'هوية بصرية' ? 'selected' : '' }}>
-                                                هوية بصرية</option>
 
                                         </select>
 
@@ -137,16 +134,17 @@
 
                             <h5>صور المعرض</h5>
 
-                         <div class="row">
-    @foreach($work->images as $image)
-        <div id="image-{{ $image->id }}" class="col-md-3 text-center mb-3">
-            <img src="{{ asset('storage/'.$image->image_path) }}" class="img-fluid mb-2">
-            <button type="button" onclick="deleteImage({{ $image->id }})" class="btn btn-danger btn-sm">
-                حذف
-            </button>
-        </div>
-    @endforeach
-</div>
+                            <div class="row">
+                                @foreach ($work->images as $image)
+                                    <div id="image-{{ $image->id }}" class="col-md-3 text-center mb-3">
+                                        <img src="{{ asset('storage/' . $image->image_path) }}" class="img-fluid mb-2">
+                                        <button type="button" onclick="deleteImage({{ $image->id }})"
+                                            class="btn btn-danger btn-sm">
+                                            حذف
+                                        </button>
+                                    </div>
+                                @endforeach
+                            </div>
 
 
                             <div class="form-group">
@@ -185,5 +183,4 @@
 @endsection
 
 @section('scripts')
-
 @endsection
