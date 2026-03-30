@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use \URL;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 
@@ -21,8 +22,13 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         //
+         if (config('app.env') === 'production') {
+        URL::forceScheme('https');
+    }
      $services = config('services_catalog');
 
     View::share('services', $services);
+
     }
+
 }
