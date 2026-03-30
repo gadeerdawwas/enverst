@@ -15,7 +15,7 @@
         <!-- /.navbar -->
 
         <!-- Main Sidebar Container -->
-        @include('back.layout.sidebar')
+        @include('back.layout.Sidebar')
         <!-- Content Wrapper. Contains page content -->
        @yield('content')
         <!-- /.content-wrapper -->
