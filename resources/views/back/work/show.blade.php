@@ -56,23 +56,18 @@
                             <div class="form-group">
                                 <label>الكلمات المفتاحية:</label>
                                 <br>
-
                                 @foreach (explode(' ', $work->tags) as $tag)
-                                 <span class="badge bg-primary me-1">   {{ trim($tag) }} </span>
+                                    <span class="badge bg-primary me-1">{{ trim($tag) }}</span>
                                 @endforeach
-
                             </div>
                         @endif
-
-
 
                         {{-- صورة الغلاف --}}
                         @if ($work->cover_image)
                             <div class="form-group">
                                 <label>صورة الغلاف:</label>
                                 <br>
-                                <img src="{{ asset('storage/' . $work->cover_image) }}" width="400"
-                                    class="img-fluid rounded">
+                                <img src="{{ $work->cover_image }}" width="400" class="img-fluid rounded">
                             </div>
                         @endif
 
@@ -83,8 +78,7 @@
                                 <div class="row">
                                     @foreach ($work->images as $image)
                                         <div class="col-md-3 mb-3 text-center">
-                                            <img src="{{ asset('storage/' . $image->image_path) }}"
-                                                class="img-fluid rounded">
+                                            <img src="{{ $image->image_path }}" class="img-fluid rounded">
                                         </div>
                                     @endforeach
                                 </div>

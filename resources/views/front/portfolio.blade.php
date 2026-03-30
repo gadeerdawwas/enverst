@@ -45,7 +45,8 @@
 
                         <div class="wk-thumb">
                             @if ($work->cover_image)
-                                <img src="{{ asset('storage/' . $work->cover_image) }}"
+                                {{-- رابط Cloudinary مباشرة بدون asset --}}
+                                <img src="{{ $work->cover_image }}"
                                      style="width:100%;height:100%;object-fit:cover;">
                             @endif
                             <span class="wk-tag">{{ $work->category }}</span>

@@ -15,7 +15,8 @@
                 <!-- Image -->
                 <div class="wd-media">
                     @if ($work->cover_image)
-                        <img src="{{ asset('storage/' . $work->cover_image) }}"
+                        {{-- رابط Cloudinary مباشرة بدون asset --}}
+                        <img src="{{ $work->cover_image }}"
                             style="width:100%;height:100%;object-fit:cover;">
                     @endif
                 </div>
@@ -57,11 +58,9 @@
                     </div>
                     <div class="wd-card-body">
                         <div class="wd-pills">
-                            <div class="wd-pills">
-                                @foreach (explode(' ', $work->tags) as $tag)
-                                    <span class="wd-pill">{{ trim($tag) }}</span>
-                                @endforeach
-                            </div>
+                            @foreach (explode(' ', $work->tags) as $tag)
+                                <span class="wd-pill">{{ trim($tag) }}</span>
+                            @endforeach
                         </div>
                     </div>
                 </article>
@@ -74,14 +73,9 @@
                     </div>
                     <div class="wd-card-body">
                         <ul class="wd-results">
-                            <ul class="wd-results">
-                                @foreach (preg_split("/\r\n|\n|\r/", $work->results) as $result)
-                                    <li><i class="bi bi-check2"></i> {{ trim($result) }}</li>
-                                @endforeach
-                                {{--  @foreach (explode('\n', $work->results) as $result)
-                                    <li><i class="bi bi-check2"></i> {{ trim($result) }}</li>
-                                @endforeach  --}}
-                            </ul>
+                            @foreach (preg_split("/\r\n|\n|\r/", $work->results) as $result)
+                                <li><i class="bi bi-check2"></i> {{ trim($result) }}</li>
+                            @endforeach
                         </ul>
                     </div>
                 </article>
@@ -98,7 +92,8 @@
             <div class="wd-g-grid">
                 @foreach ($work->images as $image)
                     <div class="wd-shot">
-                        <img src="{{ asset('storage/' . $image->image_path) }}" style="width:100%">
+                        {{-- رابط Cloudinary مباشرة بدون asset --}}
+                        <img src="{{ $image->image_path }}" style="width:100%">
                     </div>
                 @endforeach
             </div>
